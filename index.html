@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!OCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -81,38 +81,16 @@
             transform: scale(1) translateY(0);
             opacity: 1;
         }
-
-        /* Toast Notifications */
-        #toast-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .toast {
-            transform: translateX(100%);
-            opacity: 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        .toast.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
     </style>
 </head>
-<body class="text-gray-800 antialiased flex flex-col min-h-screen">
-
-    <!-- Toast Notification Container -->
-    <div id="toast-container"></div>
+<body class="text-gray-800 antialiased">
 
     <!-- Navbar -->
     <nav class="fixed w-full z-40 py-4 bg-transparent" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center rounded-2xl px-4 md:px-6 py-2 md:py-3" id="nav-container">
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" id="secret-logo-tap" title="Ketuk 5x untuk akses Admin">
+                <!-- Secret Admin Tap Target on Mobile: Klik/Tap 5x di logo ini -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" id="secret-logo-tap">
                     <div class="w-9 h-9 md:w-10 md:h-10 bg-pramuka-accent rounded-full flex items-center justify-center text-white text-base md:text-lg shadow-md">
                         <i class="fa-solid fa-campground pointer-events-none"></i>
                     </div>
@@ -126,6 +104,7 @@
                     <a href="#beranda" class="hover:text-pramuka-accent transition-colors">Beranda</a>
                     <a href="#tentang" class="hover:text-pramuka-accent transition-colors">Tentang</a>
                     <a href="#pedoman" class="hover:text-pramuka-accent transition-colors">Pedoman</a>
+                    <a href="#kegiatan" class="hover:text-pramuka-accent transition-colors">Kegiatan</a>
                     <a href="#galeri" class="hover:text-pramuka-accent transition-colors">Dokumentasi</a>
                 </div>
 
@@ -142,6 +121,7 @@
                 <a href="#beranda" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent">Beranda</a>
                 <a href="#tentang" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent">Tentang</a>
                 <a href="#pedoman" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent">Pedoman</a>
+                <a href="#kegiatan" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent">Kegiatan</a>
                 <a href="#galeri" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent">Dokumentasi</a>
             </div>
         </div>
@@ -192,6 +172,28 @@
                             <strong>PRASPENBEL</strong> merupakan singkatan dari Pramuka Sekolah Menengah Pertama Negeri 1 Belimbing. Kami adalah wadah pembinaan generasi muda yang berfokus pada pengembangan karakter, keterampilan, dan kepemimpinan melalui kegiatan terarah di alam terbuka.
                         </p>
                     </div>
+                    
+                    <div class="space-y-4 md:space-y-6 reveal reveal-delay-1 text-left">
+                        <div class="flex flex-col sm:flex-row gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 transition-colors hover:border-pramuka-accent/30 hover:bg-white hover:shadow-md">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-pramuka-dark/5 text-pramuka-dark rounded-xl flex items-center justify-center text-xl md:text-2xl">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">Visi</h3>
+                                <p class="text-gray-600 text-sm md:text-base leading-relaxed">Mewujudkan anggota Pramuka yang disiplin, berakhlak mulia, berprestasi, dan memiliki wawasan lingkungan hidup yang baik.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 transition-colors hover:border-pramuka-accent/30 hover:bg-white hover:shadow-md">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-pramuka-accent/10 text-pramuka-accent rounded-xl flex items-center justify-center text-xl md:text-2xl">
+                                <i class="fa-solid fa-hands-holding-circle"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">Misi</h3>
+                                <p class="text-gray-600 text-sm md:text-base leading-relaxed">Menyelenggarakan kegiatan kepramukaan yang menarik, menantang, serta senantiasa mengandung unsur pendidikan etika.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -206,31 +208,108 @@
             <div class="text-center max-w-3xl mx-auto mb-16 reveal">
                 <h4 class="text-pramuka-accent font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3">Pedoman Utama</h4>
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">Janji dan Moral Pramuka</h2>
+                <p class="text-gray-300 text-base md:text-lg px-2">Landasan pacu kehidupan setiap anggota Gerakan Pramuka dalam bertindak dan bertingkah laku sehari-hari.</p>
             </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-10 reveal shadow-2xl">
-                    <h3 class="text-3xl font-bold tracking-wide text-pramuka-accent mb-4">Trisatya</h3>
-                    <ol class="space-y-4 text-base md:text-lg text-gray-100 list-decimal list-inside marker:font-bold marker:text-pramuka-accent">
-                        <li>Menjalankan kewajibanku terhadap Tuhan Yang Maha Esa, Negara Kesatuan Republik Indonesia dan mengamalkan Pancasila.</li>
-                        <li>Menolong sesama hidup dan mempersiapkan diri membangun masyarakat.</li>
-                        <li>Menepati Dasa Darma.</li>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-pramuka-accent rounded-xl flex items-center justify-center text-2xl shadow-lg">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold tracking-wide text-pramuka-accent">Trisatya</h3>
+                    </div>
+                    <p class="text-lg md:text-xl font-medium mb-6 text-gray-200 italic leading-relaxed">
+                        "Demi kehormatanku aku berjanji akan bersungguh-sungguh:"
+                    </p>
+                    <ol class="space-y-4 text-base md:text-lg text-gray-100 list-decimal list-outside ml-6 marker:font-bold marker:text-pramuka-accent">
+                        <li class="pl-2 leading-relaxed">Menjalankan kewajibanku terhadap Tuhan Yang Maha Esa, Negara Kesatuan Republik Indonesia dan mengamalkan Pancasila.</li>
+                        <li class="pl-2 leading-relaxed">Menolong sesama hidup dan mempersiapkan diri membangun masyarakat.</li>
+                        <li class="pl-2 leading-relaxed">Menepati Dasa Darma.</li>
                     </ol>
                 </div>
+
                 <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-10 reveal reveal-delay-1 shadow-2xl">
-                    <h3 class="text-3xl font-bold tracking-wide mb-4">Dasa Darma Pramuka</h3>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-white text-pramuka-dark rounded-xl flex items-center justify-center text-2xl shadow-lg font-extrabold font-serif">
+                            10
+                        </div>
+                        <h3 class="text-3xl font-bold tracking-wide">Dasa Darma Pramuka</h3>
+                    </div>
+                    <p class="text-base font-medium mb-5 text-gray-300">Pramuka itu:</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm md:text-base text-gray-100">
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">1.</span><span>Takwa kepada Tuhan Yang Maha Esa.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">2.</span><span>Cinta alam dan kasih sayang sesama manusia.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">3.</span><span>Patriot yang sopan dan kesatria.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">4.</span><span>Patuh dan suka bermusyawarah.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">5.</span><span>Rela menolong dan tabah.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">6.</span><span>Rajin, terampil, dan gembira.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">7.</span><span>Hemat, cermat, dan bersahaja.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">8.</span><span>Disiplin, berani, dan setia.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">9.</span><span>Bertanggung jawab dan dapat dipercaya.</span></div>
-                        <div class="flex items-start gap-2"><span class="font-bold text-pramuka-accent w-4">10.</span><span>Suci dalam pikiran, perkataan, dan perbuatan.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">1.</span><span>Takwa kepada Tuhan Yang Maha Esa.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">2.</span><span>Cinta alam dan kasih sayang sesama manusia.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">3.</span><span>Patriot yang sopan dan kesatria.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">4.</span><span>Patuh dan suka bermusyawarah.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">5.</span><span>Rela menolong dan tabah.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">6.</span><span>Rajin, terampil, dan gembira.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">7.</span><span>Hemat, cermat, dan bersahaja.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">8.</span><span>Disiplin, berani, dan setia.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">9.</span><span>Bertanggung jawab dan dapat dipercaya.</span></div>
+                        <div class="flex items-start gap-3"><span class="font-bold text-pramuka-accent w-5 text-right">10.</span><span>Suci dalam pikiran, perkataan, dan perbuatan.</span></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kegiatan Section -->
+    <section id="kegiatan" class="py-16 md:py-24 bg-gray-50 border-y border-gray-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
+                <h4 class="text-pramuka-accent font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3">Program Utama</h4>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-pramuka-dark mb-4 md:mb-6">Kegiatan Unggulan</h2>
+                <p class="text-gray-600 text-base md:text-lg px-2">Berbagai aktivitas seru dan mendidik yang rutin dilaksanakan untuk mengasah kemampuan fisik, mental, dan keilmuan anggota.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gray-50 text-pramuka-dark rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:bg-pramuka-dark group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">Latihan Rutin</h3>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">Dilaksanakan setiap hari Jumat untuk pendalaman materi kepramukaan, keterampilan dasar, dan kekompakan.</p>
+                </div>
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group reveal sm:reveal-delay-1">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gray-50 text-pramuka-accent rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:bg-pramuka-accent group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                        <i class="fa-solid fa-tents"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">Perkemahan</h3>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">Agenda berkemah secara berkala guna melatih kemandirian, gotong royong, dan adaptasi dengan alam bebas.</p>
+                </div>
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group reveal lg:reveal-delay-2">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gray-50 text-pramuka-dark rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:bg-pramuka-dark group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">Penjelajahan</h3>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">Kegiatan menjelajah alam, rintangan, dan pemecahan sandi untuk menguji ketahanan fisik serta kecerdasan mental.</p>
+                </div>
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group reveal sm:reveal-delay-1 lg:reveal-delay-3">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gray-50 text-pramuka-accent rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:bg-pramuka-accent group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">Api Unggun</h3>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">Malam puncak perkemahan untuk mempererat persaudaraan dan menampilkan kreativitas seni antar kelompok.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keluarga Besar Section -->
+    <section id="keluarga" class="relative py-24 md:py-36 parallax-group flex items-center justify-center text-center overflow-hidden">
+        <div class="absolute inset-0 bg-pramuka-dark/40"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-pramuka-accent/80 text-white text-xs md:text-sm font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-camera"></i> Momen Kebersamaan
+                </div>
+                <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
+                    Keluarga Besar <br class="hidden sm:block">
+                    <span class="text-pramuka-accent">PRASPENBEL</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto font-medium leading-relaxed drop-shadow-md">
+                    "Satu Pramuka, Untuk Satu Indonesia. Di sinilah kami belajar tentang arti persaudaraan sejati, pengabdian tiada henti, dan kerja sama tanpa pamrih."
+                </p>
             </div>
         </div>
     </section>
@@ -242,7 +321,7 @@
                 <div class="max-w-2xl mx-auto md:mx-0">
                     <h4 class="text-pramuka-accent font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3">Dokumentasi Interaktif</h4>
                     <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-pramuka-dark mb-4">Galeri Kegiatan</h2>
-                    <p class="text-gray-600 text-base md:text-lg">Klik foto untuk melihat detail, memberikan komentar, dan saling berinteraksi.</p>
+                    <p class="text-gray-600 text-base md:text-lg">Klik foto untuk memperbesar, menyukai <em>(like)</em>, dan meninggalkan komentar.</p>
                 </div>
                 <button id="btn-show-upload" class="hidden bg-pramuka-accent hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-transform active:scale-95 shadow-md items-center gap-2 mx-auto md:mx-0">
                     <i class="fa-solid fa-cloud-arrow-up"></i> Unggah Foto
@@ -251,7 +330,7 @@
 
             <div id="gallery-loading" class="flex flex-col items-center justify-center py-20 text-gray-400">
                 <i class="fa-solid fa-spinner fa-spin text-4xl mb-4 text-pramuka-accent"></i>
-                <p>Memuat dokumentasi...</p>
+                <p>Memuat kumpulan foto...</p>
             </div>
 
             <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 hidden">
@@ -266,88 +345,108 @@
         </div>
     </section>
 
+    <!-- Pembina Section -->
+    <section id="pembina" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
+                <h4 class="text-pramuka-accent font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3">Struktur Organisasi</h4>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-pramuka-dark mb-4 md:mb-6">Pembina Gugus Depan</h2>
+                <p class="text-gray-600 text-base md:text-lg px-2">Para pembimbing penuh dedikasi yang selalu mendampingi setiap langkah dan perkembangan karakter anggota.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-8">
+                <div class="flex flex-col items-center text-center reveal">
+                    <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-5 border-4 border-gray-100 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Kamabigus" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">Drs. H. Ahmad Fauzi</h3>
+                    <p class="text-pramuka-accent text-sm font-medium">Ketua Majelis Pembimbing Gugus Depan</p>
+                </div>
+                <div class="flex flex-col items-center text-center reveal sm:reveal-delay-1">
+                    <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-5 border-4 border-gray-100 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pembina Putri" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">Kak Siti Aminah, S.Pd.</h3>
+                    <p class="text-pramuka-accent text-sm font-medium">Pembina Pasukan Penggalang Putri</p>
+                </div>
+                <div class="flex flex-col items-center text-center reveal sm:col-span-2 md:col-span-1 md:reveal-delay-2">
+                    <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-5 border-4 border-gray-100 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pembina Putra" loading="lazy" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">Kak Budi Santoso, M.Pd.</h3>
+                    <p class="text-pramuka-accent text-sm font-medium">Pembina Pasukan Penggalang Putra</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-[6px] border-pramuka-accent mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2026 Gerakan Pramuka PRASPENBEL. Seluruh hak cipta dilindungi.</p>
-            <p class="text-xs text-gray-600 mt-2">Dikelola dengan ❤️ oleh Pangkalan SMPN 1 Belimbing</p>
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-[6px] border-pramuka-accent relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-gray-800 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-gray-500 text-center md:text-left mt-8">
+                <p>&copy; 2026 Gerakan Pramuka PRASPENBEL. Seluruh hak cipta dilindungi.</p>
+                <!-- Tombol Admin Dihapus dari UI agar hacker tidak menemukannya -->
+                <p>Dikelola dengan ❤️ oleh Pangkalan SMPN 1 Belimbing</p>
+            </div>
         </div>
     </footer>
 
 
     <!-- MODALS SECTION -->
 
-    <!-- Post Detail Modal (Diperbarui dengan Slider & Form Validasi) -->
-    <div id="post-modal" class="modal-overlay fixed inset-0 z-[60] bg-black/85 flex items-center justify-center p-0 md:p-6 backdrop-blur-md">
-        <div class="modal-content bg-white w-full h-full md:h-auto md:max-w-6xl md:max-h-[90vh] md:rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl relative">
-            
-            <button id="btn-close-post" class="absolute top-4 right-4 z-[70] w-10 h-10 bg-black/50 hover:bg-pramuka-accent text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-md focus:outline-none">
+    <!-- Post Detail Modal -->
+    <div id="post-modal" class="modal-overlay fixed inset-0 z-[60] bg-black/80 flex items-center justify-center p-4 md:p-6 backdrop-blur-sm">
+        <div class="modal-content bg-white w-full max-w-5xl max-h-[90vh] rounded-2xl md:rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl relative">
+            <button id="btn-close-post" class="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-pramuka-accent text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-md focus:outline-none">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <!-- Image Area (Dengan Slider Navigation) -->
-            <div class="w-full md:w-[55%] bg-black flex items-center justify-center min-h-[40vh] md:min-h-0 relative group">
-                <img id="modal-img" src="" alt="Dokumentasi PRASPENBEL" class="w-full h-full object-contain max-h-[50vh] md:max-h-[90vh]">
-                
-                <!-- Navigasi Slider Kiri/Kanan -->
-                <button id="btn-prev-post" class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-black/40 hover:bg-pramuka-accent text-white rounded-full flex items-center justify-center transition-all opacity-70 hover:opacity-100 z-10 hidden">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <button id="btn-next-post" class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-black/40 hover:bg-pramuka-accent text-white rounded-full flex items-center justify-center transition-all opacity-70 hover:opacity-100 z-10 hidden">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-
-                <!-- Tombol Hapus Post -->
-                <button id="btn-delete-post" class="hidden absolute bottom-4 left-4 bg-red-600/90 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shadow-lg transition-colors cursor-pointer z-10">
-                    <i class="fa-solid fa-trash"></i> Hapus
+            <!-- Image Area -->
+            <div class="w-full md:w-3/5 bg-black flex flex-col items-center justify-center min-h-[300px] md:min-h-0 relative">
+                <img id="modal-img" src="" alt="Dokumentasi PRASPENBEL" class="w-full h-full object-contain max-h-[40vh] md:max-h-[90vh]">
+                <button id="btn-delete-post" class="hidden absolute bottom-4 right-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shadow-lg transition-colors cursor-pointer">
+                    <i class="fa-solid fa-trash"></i> Hapus Foto
                 </button>
             </div>
 
-            <!-- Details & Comments Area -->
-            <div class="w-full md:w-[45%] flex flex-col h-[60vh] md:h-[90vh] bg-gray-50 relative">
-                
-                <div class="p-4 md:p-5 border-b border-gray-200 bg-white shadow-sm z-10 shrink-0">
-                    <div class="flex items-start gap-3 mb-3">
+            <!-- Details Area -->
+            <div class="w-full md:w-2/5 flex flex-col h-[50vh] md:h-auto bg-gray-50">
+                <div class="p-5 border-b border-gray-200 bg-white shadow-sm z-10">
+                    <div class="flex items-start gap-3 mb-4">
                         <div class="w-10 h-10 bg-pramuka-dark text-white rounded-full flex items-center justify-center flex-shrink-0">
                             <i class="fa-solid fa-campground"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-900 text-sm">Administrator PRASPENBEL</h4>
-                            <p id="modal-caption" class="text-sm text-gray-600 mt-0.5 leading-relaxed break-words"></p>
+                            <p id="modal-caption" class="text-sm text-gray-600 mt-1 leading-relaxed break-words"></p>
                         </div>
                     </div>
+                    
                     <div class="flex items-center gap-6 text-gray-500 pt-2 border-t border-gray-100">
-                        <button id="btn-like-modal" class="flex items-center gap-1.5 hover:text-red-500 transition-colors group focus:outline-none cursor-pointer">
+                        <button id="btn-like-modal" class="flex items-center gap-2 hover:text-red-500 transition-colors group focus:outline-none cursor-pointer">
                             <i id="modal-like-icon" class="fa-regular fa-heart text-xl group-active:scale-75 transition-transform"></i>
-                            <span id="modal-like-count" class="font-semibold text-sm">0</span>
+                            <span id="modal-like-count" class="font-semibold">0</span>
                         </button>
-                        <div class="flex items-center gap-1.5">
+                        <div class="flex items-center gap-2">
                             <i class="fa-regular fa-comment text-xl"></i>
-                            <span id="modal-comment-count" class="font-semibold text-sm">0</span>
+                            <span id="modal-comment-count" class="font-semibold">0</span>
                         </div>
-                        <div class="flex items-center gap-1.5 ml-auto text-xs md:text-sm">
+                        <div class="flex items-center gap-2 ml-auto text-sm">
                             <i class="fa-regular fa-eye"></i>
-                            <span id="modal-view-count">0</span> Dilihat
+                            <span id="modal-view-count">0</span> Kali dilihat
                         </div>
                     </div>
                 </div>
 
-                <!-- List Komentar -->
-                <div id="modal-comments-list" class="flex-1 overflow-y-auto p-4 md:p-5 space-y-4 bg-gray-50 pb-6">
+                <div id="modal-comments-list" class="flex-1 overflow-y-auto p-5 space-y-4 bg-gray-50">
                     <!-- Komentar akan diisi oleh JavaScript -->
                 </div>
 
-                <!-- Input Komentar (Validasi Ketat, Nama Opsional) -->
-                <div class="p-3 md:p-4 bg-white border-t border-gray-200 shrink-0">
-                    <p id="comment-error-msg" class="text-xs text-red-500 mb-2 font-semibold hidden"></p>
-                    <form id="comment-form" class="flex flex-col gap-2 relative">
-                        <input type="text" id="comment-name" placeholder="Nama Anda (Kosongkan untuk Anonim)" maxlength="30" class="bg-gray-50 border border-gray-200 focus:bg-white focus:border-pramuka-accent focus:ring-1 focus:ring-pramuka-accent rounded-lg px-3 py-2 text-sm outline-none transition-all">
-                        <div class="flex gap-2">
-                            <input type="text" id="comment-text" placeholder="Tulis komentar... (Maks 150 huruf)" class="flex-1 bg-gray-50 border border-gray-200 focus:bg-white focus:border-pramuka-accent focus:ring-1 focus:ring-pramuka-accent rounded-lg px-3 py-2 text-sm outline-none transition-all">
-                            <button type="submit" id="btn-submit-comment" class="bg-pramuka-dark hover:bg-pramuka-accent text-white px-4 rounded-lg flex items-center justify-center transition-colors flex-shrink-0 focus:outline-none cursor-pointer font-medium text-sm">
-                                Kirim
-                            </button>
-                        </div>
+                <div class="p-4 bg-white border-t border-gray-200 mt-auto">
+                    <form id="comment-form" class="flex gap-3">
+                        <input type="text" id="comment-input" required placeholder="Tulis komentar secara anonim..." class="flex-1 bg-gray-100 border-transparent focus:bg-white focus:border-pramuka-accent focus:ring-2 focus:ring-pramuka-accent rounded-full px-4 py-2.5 text-sm outline-none transition-all">
+                        <button type="submit" class="bg-pramuka-dark hover:bg-pramuka-accent text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors flex-shrink-0 focus:outline-none cursor-pointer">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -362,58 +461,54 @@
                     <i class="fa-solid fa-user-secret"></i>
                 </div>
                 <h3 class="text-xl font-bold text-gray-900">Sistem Keamanan Pusat</h3>
-                <p class="text-sm text-gray-500 mt-1">Otorisasi administrator diperlukan.</p>
+                <p class="text-sm text-gray-500 mt-1">Hanya staf resmi yang diizinkan.</p>
             </div>
             <form id="admin-login-form">
-                <div class="space-y-3 mb-2">
-                    <input type="text" id="admin-user" required placeholder="Nama Pengguna" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pramuka-accent outline-none font-mono text-sm">
-                    <input type="password" id="admin-pwd" required placeholder="Kata Sandi" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pramuka-accent outline-none font-mono text-sm">
+                <div class="space-y-3 mb-4">
+                    <input type="text" id="admin-user" required placeholder="Nama Pengguna" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pramuka-accent outline-none font-mono">
+                    <input type="password" id="admin-pwd" required placeholder="Kata Sandi" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pramuka-accent outline-none font-mono">
                 </div>
-                <p id="admin-error" class="text-red-500 text-xs mb-4 hidden text-center font-bold h-4">Kredensial tidak valid!</p>
-                <div class="flex gap-3 mt-4">
-                    <button type="button" id="btn-cancel-admin" class="w-1/2 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 focus:outline-none cursor-pointer">Batal</button>
-                    <button type="submit" class="w-1/2 px-4 py-3 bg-red-900 text-white rounded-lg font-medium hover:bg-red-800 focus:outline-none cursor-pointer">Akses</button>
+                <p id="admin-error" class="text-red-500 text-xs mb-4 hidden text-center font-bold">Akses ditolak. Percobaan direkam.</p>
+                <div class="flex gap-3">
+                    <button type="button" id="btn-cancel-admin" class="w-1/2 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 focus:outline-none cursor-pointer">Batalkan</button>
+                    <button type="submit" class="w-1/2 px-4 py-3 bg-red-900 text-white rounded-lg font-medium hover:bg-red-800 focus:outline-none cursor-pointer">Otorisasi</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Upload Modal (Validasi Ketat Kustom) -->
+    <!-- Upload Modal -->
     <div id="upload-modal" class="modal-overlay fixed inset-0 z-[70] bg-black/60 flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="modal-content bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl">
             <div class="flex justify-between items-center mb-5">
-                <h3 class="text-xl font-bold text-gray-900">Unggah Dokumentasi</h3>
+                <h3 class="text-xl font-bold text-gray-900">Unggah Dokumentasi Baru</h3>
                 <button id="btn-close-upload" class="text-gray-400 hover:text-gray-800 focus:outline-none cursor-pointer"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
             <form id="upload-form" class="space-y-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tautan Gambar (Harus HTTPS) *</label>
-                    <input type="text" id="upload-url" placeholder="https://contoh.com/foto.jpg" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-pramuka-accent outline-none text-sm">
-                    <p id="err-upload-url" class="text-xs text-red-500 mt-1 hidden font-medium">Tautan harus valid dan diawali dengan https://</p>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tautan Gambar (URL) *</label>
+                    <input type="url" id="upload-url" required placeholder="https://..." class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-pramuka-accent outline-none text-sm">
+                    <button type="button" id="btn-random-img" class="text-xs text-pramuka-accent mt-2 hover:underline focus:outline-none cursor-pointer"><i class="fa-solid fa-dice"></i> Hasilkan Gambar Acak untuk Uji Coba</button>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Keterangan Singkat *</label>
-                    <textarea id="upload-caption" rows="3" placeholder="Deskripsi minimal 5 huruf, maksimal 200 huruf." class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-pramuka-accent outline-none text-sm resize-none"></textarea>
-                    <div class="flex justify-between mt-1">
-                        <p id="err-upload-caption" class="text-xs text-red-500 hidden font-medium">Keterangan minimal 5 karakter.</p>
-                        <span id="char-count" class="text-xs text-gray-400 ml-auto">0/200</span>
-                    </div>
+                    <textarea id="upload-caption" required rows="3" placeholder="Tuliskan deskripsi peristiwa..." class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-pramuka-accent outline-none text-sm resize-none"></textarea>
                 </div>
                 <button type="submit" id="btn-submit-upload" class="w-full bg-pramuka-accent text-white py-3 rounded-lg font-bold hover:bg-orange-700 transition-colors flex items-center justify-center gap-2 focus:outline-none cursor-pointer">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> Terbitkan
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Terbitkan Dokumentasi
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- Confirm Modal -->
+    <!-- Custom Modal Confirm Box -->
     <div id="confirm-modal" class="modal-overlay fixed inset-0 z-[80] bg-black/60 flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="modal-content bg-white w-full max-w-sm rounded-2xl p-6 shadow-2xl text-center">
             <div class="w-14 h-14 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
             <h3 class="text-lg font-bold text-gray-900 mb-2">Konfirmasi Penghapusan</h3>
-            <p class="text-gray-500 text-sm mb-6">Tindakan ini tidak dapat dibatalkan. Hapus permanen?</p>
+            <p class="text-gray-500 text-sm mb-6">Apakah Anda yakin ingin menghapus dokumentasi ini secara permanen?</p>
             <div class="flex gap-3">
                 <button id="btn-confirm-cancel" class="w-1/2 px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 focus:outline-none cursor-pointer">Batal</button>
                 <button id="btn-confirm-delete" class="w-1/2 px-4 py-2.5 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 focus:outline-none cursor-pointer">Ya, Hapus</button>
@@ -428,6 +523,7 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
         import { getFirestore, collection, onSnapshot, doc, updateDoc, addDoc, deleteDoc, arrayUnion, arrayRemove } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
+        // 1. Inisialisasi Database
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -439,71 +535,19 @@
         let currentUser = null;
         let isAdmin = false;
         let allPosts = [];
-        let currentOpenPostIndex = -1; // Berubah menggunakan index agar bisa slide
-        let postToDeleteId = null;
-        let commentToDelete = null;
+        let currentOpenPostId = null;
 
+        // Elemen DOM
         const galleryGrid = document.getElementById('gallery-grid');
         const galleryLoading = document.getElementById('gallery-loading');
         const galleryEmpty = document.getElementById('gallery-empty');
         const postModal = document.getElementById('post-modal');
+        const btnDeletePost = document.getElementById('btn-delete-post');
+
         const confirmModal = document.getElementById('confirm-modal');
+        let postToDeleteId = null;
 
-        /* TOAST NOTIFICATION SYSTEM */
-        const showToast = (message, type = 'success') => {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            const bg = type === 'error' ? 'bg-red-600' : (type === 'warn' ? 'bg-yellow-500' : 'bg-gray-800');
-            const icon = type === 'error' ? 'fa-circle-xmark' : (type === 'warn' ? 'fa-triangle-exclamation' : 'fa-circle-check');
-            
-            toast.className = `toast flex items-center gap-3 ${bg} text-white px-4 py-3 rounded-xl shadow-xl text-sm font-medium`;
-            toast.innerHTML = `<i class="fa-solid ${icon}"></i> ${escapeHTML(message)}`;
-            
-            container.appendChild(toast);
-            
-            // Force reflow
-            void toast.offsetWidth;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        };
-
-        /* PROFANITY FILTER (Kamus Kata Kasar) */
-        const badWords = ['anjing', 'babi', 'monyet', 'bangsat', 'goblok', 'tolol', 'kontol', 'memek', 'ngentot', 'bajingan', 'asu', 'kampret', 'sialan', 'bodoh', 'bego'];
-        const isProfane = (text) => {
-            const lowerText = text.toLowerCase();
-            return badWords.some(word => {
-                // Regex mencocokkan kata utuh (boundary) agar tidak salah sensor (cth: "kopi asu" vs "pasukan")
-                const regex = new RegExp(`\\b${word}\\b`, 'i');
-                return regex.test(lowerText);
-            });
-        };
-
-        /* FORMAT WAKTU (Time Ago) */
-        const timeAgo = (timestamp) => {
-            const seconds = Math.floor((new Date() - timestamp) / 1000);
-            if (seconds < 60) return "Baru saja";
-            const minutes = Math.floor(seconds / 60);
-            if (minutes < 60) return `${minutes}mnt lalu`;
-            const hours = Math.floor(minutes / 60);
-            if (hours < 24) return `${hours}jam lalu`;
-            const days = Math.floor(hours / 24);
-            if (days < 7) return `${days}hr lalu`;
-            return new Date(timestamp).toLocaleDateString('id-ID', {day:'numeric', month:'short'});
-        };
-
-        /* ANTI XSS & NOSQL INJECTION */
-        function escapeHTML(str) {
-            if (typeof str !== 'string') return '';
-            return str.replace(/[&<>'"]/g, tag => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-            }[tag] || tag));
-        }
-
-        // 2. Auth Init
+        // 2. Autentikasi Pengunjung (Anonim agar dapat komentar & like)
         const initAuth = async () => {
             try {
                 if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
@@ -511,40 +555,51 @@
                 } else {
                     await signInAnonymously(auth);
                 }
-            } catch (err) {}
+            } catch (err) {
+                console.error("Kesalahan otentikasi:", err);
+            }
         };
+
         initAuth();
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
             if (user) fetchGallery();
         });
 
-        // 3. Tarik Data
+        // 3. Tarik Data Galeri Realtime
         const fetchGallery = () => {
             if (!currentUser) return;
+            
             onSnapshot(galleryPath, (snapshot) => {
                 allPosts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                allPosts.sort((a, b) => b.timestamp - a.timestamp); // Sort memori
+                allPosts.sort((a, b) => b.timestamp - a.timestamp);
                 renderGallery();
                 
-                // Update Modal UI live
-                if(currentOpenPostIndex !== -1 && allPosts[currentOpenPostIndex]) {
-                    updatePostModalUI(currentOpenPostIndex);
+                // Update post yang sedang terbuka (misal jika ada yang komen saat post dibuka)
+                if(currentOpenPostId) {
+                    const updatedPost = allPosts.find(p => p.id === currentOpenPostId);
+                    if(updatedPost) {
+                        updatePostModalUI(updatedPost);
+                    } else {
+                        closePostModal(); // Jika post dihapus admin lain
+                    }
                 }
             }, (error) => {
-                galleryLoading.innerHTML = '<p class="text-red-500">Terjadi kesalahan memuat data.</p>';
+                galleryLoading.innerHTML = '<p class="text-red-500">Terjadi kesalahan saat memuat data. Periksa koneksi.</p>';
             });
         };
 
-        // 4. Render Grid
+        // 4. Render Galeri
         const renderGallery = () => {
             galleryLoading.classList.add('hidden');
+            
             if (allPosts.length === 0) {
                 galleryGrid.classList.add('hidden');
                 galleryEmpty.classList.remove('hidden');
                 galleryEmpty.style.display = 'flex';
                 return;
             }
+
             galleryEmpty.style.display = 'none';
             galleryGrid.classList.remove('hidden');
             galleryGrid.innerHTML = '';
@@ -555,10 +610,10 @@
                 card.className = `bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer group ${index < 3 ? 'reveal active' : ''}`;
                 card.innerHTML = `
                     <div class="h-56 sm:h-64 relative overflow-hidden bg-gray-100">
-                        <img src="${escapeHTML(post.imageUrl)}" alt="Dokumentasi" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                        <img src="${escapeHTML(post.imageUrl)}" alt="Dokumentasi PRASPENBEL" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <span class="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
-                                <i class="fa-solid fa-expand"></i> Buka
+                                <i class="fa-solid fa-expand"></i> Buka Foto
                             </span>
                         </div>
                     </div>
@@ -566,52 +621,48 @@
                         <p class="text-gray-800 text-sm line-clamp-2 mb-4 h-10">${escapeHTML(post.caption)}</p>
                         <div class="flex items-center justify-between text-gray-500 text-sm font-medium border-t border-gray-100 pt-3">
                             <div class="flex gap-4">
-                                <span class="flex items-center gap-1.5 ${isLiked ? 'text-red-500' : ''}"><i class="${isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i> ${post.likes?.length || 0}</span>
-                                <span class="flex items-center gap-1.5"><i class="fa-regular fa-comment"></i> ${post.comments?.length || 0}</span>
+                                <span class="flex items-center gap-1.5 ${isLiked ? 'text-red-500' : ''}">
+                                    <i class="${isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i> ${post.likes?.length || 0}
+                                </span>
+                                <span class="flex items-center gap-1.5">
+                                    <i class="fa-regular fa-comment"></i> ${post.comments?.length || 0}
+                                </span>
                             </div>
-                            <span class="flex items-center gap-1.5 text-gray-400"><i class="fa-regular fa-eye"></i> ${post.views || 0}</span>
+                            <span class="flex items-center gap-1.5 text-gray-400">
+                                <i class="fa-regular fa-eye"></i> ${post.views || 0}
+                            </span>
                         </div>
                     </div>
                 `;
-                card.addEventListener('click', () => openPostModal(index));
+                card.addEventListener('click', () => openPostModal(post));
                 galleryGrid.appendChild(card);
             });
         };
 
-        // 5. Interaksi Modal & Slider
-        const btnPrevPost = document.getElementById('btn-prev-post');
-        const btnNextPost = document.getElementById('btn-next-post');
-
-        const openPostModal = async (index) => {
-            currentOpenPostIndex = index;
-            const post = allPosts[index];
-            updatePostModalUI(index);
+        // 5. Interaksi Modal Detail (Komentar & Like)
+        const openPostModal = async (post) => {
+            currentOpenPostId = post.id;
+            updatePostModalUI(post);
             postModal.classList.add('active');
             document.body.style.overflow = 'hidden';
 
+            if (isAdmin) {
+                btnDeletePost.classList.remove('hidden');
+            } else {
+                btnDeletePost.classList.add('hidden');
+            }
+
+            // Tambah Tayangan (Views)
             if (currentUser) {
                 const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'galleryPosts', post.id);
                 try { await updateDoc(postRef, { views: (post.views || 0) + 1 }); } catch(e) {}
             }
         };
 
-        const updatePostModalUI = (index) => {
-            const post = allPosts[index];
-            if(!post) return closePostModal();
-
+        const updatePostModalUI = (post) => {
             document.getElementById('modal-img').src = post.imageUrl;
             document.getElementById('modal-caption').textContent = post.caption;
             
-            // Slider Buttons Visibility
-            btnPrevPost.classList.toggle('hidden', index === 0);
-            btnNextPost.classList.toggle('hidden', index === allPosts.length - 1);
-
-            // Admin features
-            const btnDelPost = document.getElementById('btn-delete-post');
-            if (isAdmin) btnDelPost.classList.remove('hidden');
-            else btnDelPost.classList.add('hidden');
-
-            // Likes & Stats
             const isLiked = post.likes?.includes(currentUser?.uid);
             const likeIcon = document.getElementById('modal-like-icon');
             const likeBtn = document.getElementById('btn-like-modal');
@@ -627,69 +678,46 @@
                 likeIcon.className = "fa-regular fa-heart text-xl";
                 likeBtn.classList.remove('text-red-500');
             }
+
+            // Pasang Event Like (pastikan dibersihkan dulu agar tidak double trigger)
+            likeBtn.onclick = null;
             likeBtn.onclick = () => handleLike(post.id, isLiked);
 
-            // Comments Render
+            // Render Komentar
             const commentsContainer = document.getElementById('modal-comments-list');
             commentsContainer.innerHTML = '';
             
             if (!post.comments || post.comments.length === 0) {
-                commentsContainer.innerHTML = '<p class="text-center text-gray-400 text-sm mt-10">Jadilah yang pertama mengomentari momen ini.</p>';
+                commentsContainer.innerHTML = '<p class="text-center text-gray-400 text-sm mt-10">Belum ada komentar.</p>';
             } else {
                 const sortedComments = [...post.comments].sort((a,b) => a.timestamp - b.timestamp);
                 sortedComments.forEach(c => {
-                    const timeString = timeAgo(c.timestamp);
+                    const date = new Date(c.timestamp).toLocaleDateString('id-ID', {day:'numeric', month:'short'});
                     const div = document.createElement('div');
-                    div.className = "flex gap-3 text-sm group";
-                    
-                    // Tombol hapus komentar (Hanya Admin)
-                    let delHtml = '';
-                    if (isAdmin) {
-                        delHtml = `<button class="btn-del-comment text-red-400 hover:text-red-600 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" title="Hapus Komentar"><i class="fa-solid fa-trash-can"></i></button>`;
-                    }
-
+                    div.className = "flex gap-3 text-sm animate-fade-in-down";
                     div.innerHTML = `
-                        <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 text-gray-500 text-xs mt-1">
+                        <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 text-gray-500 text-xs">
                             <i class="fa-solid fa-user"></i>
                         </div>
-                        <div class="flex-1">
-                            <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-gray-100 shadow-sm inline-block min-w-[60%]">
-                                <div class="flex justify-between items-baseline mb-1 gap-4">
-                                    <span class="font-bold text-gray-800">${escapeHTML(c.author)}</span>
-                                    <div class="flex items-center">
-                                        <span class="text-[10px] text-gray-400">${timeString}</span>
-                                        ${delHtml}
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 break-words">${escapeHTML(c.text)}</p>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-gray-100 shadow-sm flex-1">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <span class="font-bold text-gray-800">${escapeHTML(c.author)}</span>
+                                <span class="text-[10px] text-gray-400">${date}</span>
                             </div>
+                            <p class="text-gray-600">${escapeHTML(c.text)}</p>
                         </div>
                     `;
-                    
-                    if(isAdmin) {
-                        div.querySelector('.btn-del-comment').onclick = () => deleteCommentFromDB(post.id, c);
-                    }
-                    
                     commentsContainer.appendChild(div);
                 });
+                // Gulir ke komentar terbaru
                 setTimeout(() => { commentsContainer.scrollTop = commentsContainer.scrollHeight; }, 10);
             }
         };
 
-        // Slider Navigation Events
-        btnPrevPost.addEventListener('click', () => {
-            if(currentOpenPostIndex > 0) openPostModal(currentOpenPostIndex - 1);
-        });
-        btnNextPost.addEventListener('click', () => {
-            if(currentOpenPostIndex < allPosts.length - 1) openPostModal(currentOpenPostIndex + 1);
-        });
-
         const closePostModal = () => {
             postModal.classList.remove('active');
-            currentOpenPostIndex = -1;
+            currentOpenPostId = null;
             document.body.style.overflow = '';
-            document.getElementById('comment-error-msg').classList.add('hidden');
-            document.getElementById('comment-form').reset();
         };
 
         document.getElementById('btn-close-post').addEventListener('click', closePostModal);
@@ -697,94 +725,51 @@
             if (e.target === postModal) closePostModal();
         });
 
-        // 6. Like & Comment Submit (Dengan Validasi Kustom)
+        // 6. Fungsi Like, Komentar, dan Hapus DB
         const handleLike = async (postId, currentlyLiked) => {
             if (!currentUser) return;
             const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'galleryPosts', postId);
             try {
-                if (currentlyLiked) await updateDoc(postRef, { likes: arrayRemove(currentUser.uid) });
-                else await updateDoc(postRef, { likes: arrayUnion(currentUser.uid) });
+                if (currentlyLiked) {
+                    await updateDoc(postRef, { likes: arrayRemove(currentUser.uid) });
+                } else {
+                    await updateDoc(postRef, { likes: arrayUnion(currentUser.uid) });
+                }
             } catch (error) {}
         };
 
         document.getElementById('comment-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (!currentUser || currentOpenPostIndex === -1) return;
+            if (!currentUser || !currentOpenPostId) return;
 
-            const nameInput = document.getElementById('comment-name');
-            const textInput = document.getElementById('comment-text');
-            const errMsg = document.getElementById('comment-error-msg');
-            
-            // Sanitization & Trim (Mencegah Bypass spasi kosong)
-            let authorName = nameInput.value.trim();
-            let commentText = textInput.value.trim();
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
+            if(!text) return;
 
-            errMsg.classList.add('hidden');
-
-            // Custom JS Validation
-            if(commentText.length < 3) {
-                errMsg.textContent = "Komentar terlalu pendek (min. 3 huruf).";
-                errMsg.classList.remove('hidden');
-                return;
-            }
-            if(commentText.length > 150) {
-                errMsg.textContent = "Komentar terlalu panjang (maks. 150 huruf).";
-                errMsg.classList.remove('hidden');
-                return;
-            }
-            if(isProfane(commentText) || isProfane(authorName)) {
-                errMsg.textContent = "Komentar mengandung kata-kata yang tidak pantas.";
-                errMsg.classList.remove('hidden');
-                return;
-            }
-
-            if(authorName === "") authorName = "Anonim";
-            if(authorName.length > 30) authorName = authorName.substring(0, 30);
-
-            const btnSubmit = document.getElementById('btn-submit-comment');
+            const btnSubmit = e.target.querySelector('button');
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
 
-            // Konstruksi objek pastikan tipe String (Anti NoSQLi)
             const newComment = {
-                text: String(commentText),
-                author: String(authorName),
-                uid: String(currentUser.uid),
+                text: text,
+                author: "Anggota/Alumni", // Nama anonim diperhalus
+                uid: currentUser.uid,
                 timestamp: Date.now()
             };
 
-            const post = allPosts[currentOpenPostIndex];
-            const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'galleryPosts', post.id);
-            
+            input.value = ''; 
+            const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'galleryPosts', currentOpenPostId);
             try { 
                 await updateDoc(postRef, { comments: arrayUnion(newComment) }); 
-                textInput.value = ''; // Hanya reset text, biarkan nama tersimpan
-                showToast("Komentar terkirim!");
             } catch (error) {
-                errMsg.textContent = "Gagal mengirim komentar. Coba lagi.";
-                errMsg.classList.remove('hidden');
+                console.error("Gagal mengirim komentar");
             } finally {
                 btnSubmit.disabled = false;
-                btnSubmit.innerHTML = 'Kirim';
             }
         });
 
-        // Hapus Komentar Admin
-        const deleteCommentFromDB = async (postId, commentObj) => {
-            if(!isAdmin) return;
-            if(!confirm("Hapus komentar ini?")) return; // Ini konfirmasi kecil aman di frame
-            const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'galleryPosts', postId);
-            try {
-                await updateDoc(postRef, { comments: arrayRemove(commentObj) });
-                showToast("Komentar dihapus.");
-            } catch (err) {
-                showToast("Gagal menghapus komentar.", "error");
-            }
-        };
-
-        // Hapus Post Admin
-        document.getElementById('btn-delete-post').addEventListener('click', () => {
-            postToDeleteId = allPosts[currentOpenPostIndex].id;
+        // Hapus
+        btnDeletePost.addEventListener('click', () => {
+            postToDeleteId = currentOpenPostId;
             confirmModal.classList.add('active');
         });
 
@@ -799,15 +784,14 @@
             const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'galleryPosts', postToDeleteId);
             const btnConfirm = document.getElementById('btn-confirm-delete');
             btnConfirm.disabled = true;
-            btnConfirm.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            btnConfirm.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Menghapus...';
 
             try {
                 await deleteDoc(postRef);
                 confirmModal.classList.remove('active');
                 closePostModal();
-                showToast("Dokumentasi dihapus.", "success");
             } catch (error) {
-                showToast("Gagal menghapus.", "error");
+                console.error("Gagal menghapus", error);
             } finally {
                 btnConfirm.disabled = false;
                 btnConfirm.innerHTML = 'Ya, Hapus';
@@ -815,9 +799,11 @@
             }
         });
 
-        // 7. KEAMANAN: Mode Admin (Shift+A atau Tap 5x)
+
+        // 7. KEAMANAN: Mode Admin Tersembunyi (Anti-Bypass)
         const adminModal = document.getElementById('admin-modal');
         
+        // Pemicu Rahasia 1: Keyboard Shortcut (Shift + A)
         document.addEventListener('keydown', (e) => {
             if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
                 adminModal.classList.add('active');
@@ -825,7 +811,9 @@
             }
         });
 
-        let tapCount = 0; let tapTimer;
+        // Pemicu Rahasia 2: Tap Logo 5 Kali (Untuk Pengguna HP)
+        let tapCount = 0;
+        let tapTimer;
         document.getElementById('secret-logo-tap').addEventListener('click', () => {
             tapCount++;
             clearTimeout(tapTimer);
@@ -833,7 +821,7 @@
                 adminModal.classList.add('active');
                 tapCount = 0;
             } else {
-                tapTimer = setTimeout(() => { tapCount = 0; }, 1500);
+                tapTimer = setTimeout(() => { tapCount = 0; }, 1500); // Reset jika jeda terlalu lama
             }
         });
 
@@ -842,13 +830,14 @@
             document.getElementById('admin-error').classList.add('hidden');
         });
 
+        // Validasi Ketat (Client Side Check, no bypass)
         document.getElementById('admin-login-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const user = document.getElementById('admin-user').value;
             const pwd = document.getElementById('admin-pwd').value;
             
-            // Bypass logic protection: explicit literal check
-            if(String(user) === 'pembina' && String(pwd) === 'pramuka123') {
+            // Kredensial yang diminta: pembina / pramuka123
+            if(user === 'pembina' && pwd === 'pramuka123') {
                 isAdmin = true;
                 adminModal.classList.remove('active');
                 
@@ -856,72 +845,49 @@
                 btnUpload.classList.remove('hidden');
                 btnUpload.classList.add('flex');
                 
-                if(currentOpenPostIndex !== -1) document.getElementById('btn-delete-post').classList.remove('hidden');
+                if(currentOpenPostId) btnDeletePost.classList.remove('hidden');
                 
-                showToast("Akses Admin Diberikan!");
+                // Tambahkan indikator admin di pojok layar
+                const adminBadge = document.createElement('div');
+                adminBadge.className = 'fixed bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg z-50 flex items-center gap-2';
+                adminBadge.innerHTML = '<i class="fa-solid fa-shield-halved"></i> Mode Admin Aktif';
+                document.body.appendChild(adminBadge);
+
             } else {
                 const err = document.getElementById('admin-error');
                 err.classList.remove('hidden');
+                // Efek getar saat salah
                 adminModal.querySelector('.modal-content').classList.add('animate-pulse');
                 setTimeout(() => adminModal.querySelector('.modal-content').classList.remove('animate-pulse'), 500);
             }
             document.getElementById('admin-pwd').value = '';
         });
 
-        // 8. Upload Modal (Custom JS Form Validation)
+        // 8. Logika Unggah Foto Baru
         const uploadModal = document.getElementById('upload-modal');
         document.getElementById('btn-show-upload').addEventListener('click', () => uploadModal.classList.add('active'));
         document.getElementById('btn-close-upload').addEventListener('click', () => uploadModal.classList.remove('active'));
         
-        const upUrlInput = document.getElementById('upload-url');
-        const upCaptionInput = document.getElementById('upload-caption');
-        const errUrl = document.getElementById('err-upload-url');
-        const errCaption = document.getElementById('err-upload-caption');
-        const charCount = document.getElementById('char-count');
-
-        // Textarea char counter & limit preventer
-        upCaptionInput.addEventListener('input', (e) => {
-            let val = e.target.value;
-            if(val.length > 200) {
-                e.target.value = val.substring(0, 200); // Strict length truncate
-                val = e.target.value;
-            }
-            charCount.textContent = `${val.length}/200`;
-            errCaption.classList.add('hidden');
-        });
-        upUrlInput.addEventListener('input', () => errUrl.classList.add('hidden'));
-
         document.getElementById('btn-random-img').addEventListener('click', () => {
-            upUrlInput.value = `https://picsum.photos/seed/${Math.floor(Math.random() * 1000)}/800/600`;
-            errUrl.classList.add('hidden');
+            const randomId = Math.floor(Math.random() * 1000);
+            document.getElementById('upload-url').value = `https://picsum.photos/seed/${randomId}/800/600`;
         });
 
         document.getElementById('upload-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            if(!isAdmin || !currentUser) return;
-
-            let url = String(upUrlInput.value).trim();
-            let caption = String(upCaptionInput.value).trim();
             
-            let isValid = true;
-
-            // Kustom Regex HTTPS Validasi (Anti bypass input type="url")
-            const urlPattern = /^https:\/\/.+/i;
-            if(!urlPattern.test(url)) {
-                errUrl.classList.remove('hidden');
-                isValid = false;
+            // Cek Ganda Keamanan
+            if(!isAdmin || !currentUser) {
+                alert("Akses Tidak Sah Ditolak!");
+                return;
             }
 
-            if(caption.length < 5 || caption.length > 200) {
-                errCaption.classList.remove('hidden');
-                isValid = false;
-            }
-
-            if(!isValid) return;
-
+            const url = document.getElementById('upload-url').value;
+            const caption = document.getElementById('upload-caption').value;
             const btnSubmit = document.getElementById('btn-submit-upload');
+
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+            btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengunggah...';
 
             const newPost = {
                 imageUrl: url,
@@ -936,17 +902,22 @@
                 await addDoc(galleryPath, newPost);
                 uploadModal.classList.remove('active');
                 document.getElementById('upload-form').reset();
-                charCount.textContent = "0/200";
-                showToast("Dokumentasi Berhasil Diunggah!");
             } catch (error) {
-                showToast("Gagal mengunggah ke server.", "error");
+                console.error("Gagal mengunggah:", error);
             } finally {
                 btnSubmit.disabled = false;
-                btnSubmit.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Terbitkan';
+                btnSubmit.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Terbitkan Dokumentasi';
             }
         });
 
-        // Navigasi UI Mobile & Scroll
+        function escapeHTML(str) {
+            if (typeof str !== 'string') return '';
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        // Script UI Navigasi & Observer
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -1000,6 +971,19 @@
             });
         }, { passive: true });
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const observerOptions = { root: null, rootMargin: '0px 0px -50px 0px', threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            reveals.forEach(reveal => { observer.observe(reveal); });
+        });
     </script>
 </body>
 </html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pramuka SMPN 1 Belimbing</title>
+    
+    <!-- Tailwind CSS v4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --color-pramuka-dark: #3E2723;
+            --color-pramuka-light: #5D4037;
+            --color-pramuka-accent: #E65100;
+            --color-pramuka-bg: #FAFAFA;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-pramuka-bg);
+            overflow-x: hidden; /* Mencegah scroll menyamping */
+        }
+
+        .hero-pattern {
+            background-image: linear-gradient(to bottom, rgba(62, 39, 35, 0.75), rgba(62, 39, 35, 0.95)), url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* * OPTIMASI ANIMASI SCROLL 
+         * Hanya menganimasikan opacity & transform untuk menghindari layout thrashing
+         * Menggunakan will-change agar diproses oleh GPU (Hardware Acceleration)
+         */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delay untuk efek air terjun (waterfall) */
+        .reveal-delay-1 { transition-delay: 150ms; }
+        .reveal-delay-2 { transition-delay: 300ms; }
+        .reveal-delay-3 { transition-delay: 450ms; }
+        
+        /* Animasi khusus Navbar agar tidak berat */
+        #navbar, #nav-container, #nav-title, #nav-subtitle, #nav-links {
+            transition: background-color 0.4s ease, padding 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 py-4 bg-transparent" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center rounded-2xl px-4 md:px-6 py-2 md:py-3" id="nav-container">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-9 h-9 md:w-10 md:h-10 bg-pramuka-accent rounded-full flex items-center justify-center text-white text-base md:text-lg shadow-md">
+                        <i class="fa-solid fa-campground"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-white text-base md:text-lg tracking-wide leading-tight" id="nav-title">SPENSABEL</h1>
+                        <p class="text-[9px] md:text-[10px] text-gray-300 tracking-wider uppercase" id="nav-subtitle">Pramuka Pangkalan</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8 items-center text-white font-medium text-sm lg:text-base" id="nav-links">
+                    <a href="#beranda" class="hover:text-pramuka-accent transition-colors">Beranda</a>
+                    <a href="#tentang" class="hover:text-pramuka-accent transition-colors">Tentang Kami</a>
+                    <a href="#kegiatan" class="hover:text-pramuka-accent transition-colors">Kegiatan</a>
+                    <a href="#galeri" class="hover:text-pramuka-accent transition-colors">Galeri</a>
+                    <a href="#pembina" class="hover:text-pramuka-accent transition-colors">Pembina</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" aria-label="Menu" class="text-white hover:text-pramuka-accent focus:outline-none transition-colors p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="hidden absolute w-full bg-white shadow-2xl border-t border-gray-100 origin-top transition-all">
+            <div class="px-4 pt-2 pb-6 space-y-1 text-center">
+                <a href="#beranda" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent transition-colors">Beranda</a>
+                <a href="#tentang" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent transition-colors">Tentang Kami</a>
+                <a href="#kegiatan" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent transition-colors">Kegiatan</a>
+                <a href="#galeri" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent transition-colors">Galeri</a>
+                <a href="#pembina" class="mobile-link block px-3 py-3.5 rounded-xl text-gray-800 font-semibold hover:bg-gray-50 hover:text-pramuka-accent transition-colors">Pembina</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-pattern min-h-[100svh] flex items-center pt-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center text-center">
+            
+            <div class="reveal inline-flex items-center gap-2 mb-6 md:mb-8 px-4 md:px-5 py-1.5 md:py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs md:text-sm font-medium backdrop-blur-md">
+                <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-pramuka-accent animate-pulse"></span>
+                Gudep 01.023 - 01.024
+            </div>
+            
+            <h1 class="reveal reveal-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 md:mb-6 leading-[1.15] tracking-tight max-w-4xl">
+                Satyaku Kudarmakan,<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pramuka-accent">Darmaku Kubaktikan</span>
+            </h1>
+            
+            <p class="reveal reveal-delay-2 mt-4 text-base sm:text-lg md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto font-light leading-relaxed px-2">
+                Membentuk karakter generasi muda yang tangguh, mandiri, peduli, dan berjiwa Pancasila melalui pendidikan kepramukaan di SMPN 1 Belimbing.
+            </p>
+            
+            <div class="reveal reveal-delay-3 flex flex-col sm:flex-row justify-center gap-4 md:gap-5 w-full sm:w-auto px-4 sm:px-0">
+                <a href="#tentang" class="bg-pramuka-accent hover:bg-[#c24400] text-white px-6 md:px-8 py-3.5 md:py-4 rounded-full font-semibold text-base md:text-lg transition-transform active:scale-95 shadow-lg shadow-orange-900/30 flex items-center justify-center gap-2">
+                    Mulai Jelajahi <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+                <a href="#kegiatan" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-6 md:px-8 py-3.5 md:py-4 rounded-full font-semibold text-base md:text-lg transition-transform active:scale-95 flex items-center justify-center">
+                    Lihat Program
+                </a>
+            </div>
+        </div>
+        
+        <!-- Animated Scroll Indicator (Hidden on small mobile landscape) -->
+        <div class="hidden sm:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 flex-col items-center animate-bounce opacity-70">
+            <span class="text-white text-[10px] font-light tracking-[0.2em] mb-2 uppercase">Scroll</span>
+            <i class="fa-solid fa-chevron-down text-white text-sm"></i>
+        </div>
+    </section>
+
+    <!-- Tentang Section -->
+    <section id="tentang" class="py-16 md:py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Image Side -->
+                <div class="relative reveal mx-auto w-full max-w-md lg:max-w-full">
+                    <div class="absolute inset-0 bg-pramuka-light/10 rounded-[2rem] md:rounded-[2.5rem] transform rotate-3 scale-105 transition-transform duration-500 hover:rotate-6"></div>
+                    <!-- Ditambahkan loading="lazy" dan decoding="async" untuk performa -->
+                    <img src="https://images.unsplash.com/photo-1596400976532-6b95764fffe2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Pramuka SMPN 1 Belimbing" 
+                         loading="lazy" decoding="async"
+                         class="relative rounded-[1.5rem] md:rounded-[2rem] shadow-xl w-full h-auto object-cover aspect-[4/3] z-10">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-2 md:-bottom-8 md:-right-8 z-20 bg-pramuka-dark text-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-3 md:gap-4 reveal reveal-delay-2">
+                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-pramuka-accent flex items-center justify-center text-lg md:text-2xl">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg md:text-2xl">Akreditasi A</p>
+                            <p class="text-[10px] md:text-xs text-gray-300 uppercase tracking-wider">Gugus Depan Mantap</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="lg:pl-8 mt-8 lg:mt-0 text-center lg:text-left">
+                    <div class="reveal">
+                        <h4 class="text-pramuka-accent font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3">Tentang Kami</h4>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-pramuka-dark mb-6 leading-tight">Membangun Karakter Melalui <span class="text-pramuka-accent">Tantangan</span></h2>
+                        <p class="text-gray-600 mb-8 text-base md:text-lg leading-relaxed">
+                            Pramuka SMPN 1 Belimbing adalah wadah pembinaan generasi muda yang fokus pada pengembangan karakter, keterampilan, dan kepemimpinan. Kami secara aktif menyelenggarakan kegiatan edukatif dan rekreatif di alam terbuka untuk membentuk pribadi yang mandiri dan peduli.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4 md:space-y-6 reveal reveal-delay-1 text-left">
+                        <div class="flex flex-col sm:flex-row gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 transition-colors hover:border-pramuka-accent/30 hover:bg-white hover:shadow-md">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-pramuka-dark/5 text-pramuka-dark rounded-xl flex items-center justify-center text-xl md:text-2xl">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">Visi Kami</h3>
+                                <p class="text-gray-600 text-sm md:text-base leading-relaxed">Terwujudnya anggota pramuka yang disiplin, berakhlak mulia, berprestasi, dan berwawasan lingkungan sekitar.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100 transition-colors hover:border-pramuka-accent/30 hover:bg-white hover:shadow-md">
+                            <div class="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-pramuka-accent/10 text-pramuka-accent rounded-xl flex items-center justify-center text-xl md:text-2xl">
+                                <i class="fa-solid fa-hands-holding-circle"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">Misi Kami</h3>
+                                <p class="text-gray-600 text-sm md:text-base leading-relaxed">Menyelenggarakan kepramukaan yang menarik, menantang, dan selalu mengandung unsur pendidikan tata krama.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kegiatan Section -->
+    <section id="kegiatan" class="py-16 md:py-24 bg-gray-50 border-y border-gray-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
+                <h4 class="text-pramuka-accent font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3">Program Utama</h4>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-pramuka-dark mb-4 md:mb-6">Kegiatan Unggulan</h2>
+                <p class="text-gray-600 text-base md:text-lg px-2">Berbagai aktivitas seru dan mendidik yang rutin dilaksanakan untuk mengasah kemampuan fisik, mental, dan intelektual anggota secara seimbang.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gray-50 text-pramuka-dark rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:bg-pramuka-dark group-hover:text-white transition-all duration-300 group-hover:scale-110 group-active:scale-95">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">Latihan Rutin</h3>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">Dilaksanakan setiap hari Jumat sore untuk pendalaman materi kepramukaan dasar, tali-temali, sandi, dan PBB.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group reveal sm:reveal-delay-1">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gray-50 text-pramuka-accent rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:bg-pramuka-accent group-hover:text-white transition-all duration-300 group-hover:scale-110 group-active:scale-95">
+                        <i class="fa-solid fa-tents"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">Perkemahan</h3>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">Agenda Persami / Perjusami berkala untuk melatih kemandirian, kerja sama tim, dan adaptasi dengan alam terbuka.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group reveal lg:reveal-delay-2">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gray-50 text-pramuka-dark rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:bg-pramuka-dark group-hover:text-white transition-all duration-300 group-hover:scale-110 group-active:scale-95">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">Penjelajahan</h3>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">Kegiatan hiking, halang rintang, dan memecahkan sandi di rute perjalanan untuk menguji ketangkasan mental & fisik.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group reveal sm:reveal-delay-1 lg:reveal-delay-3">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gray-50 text-pramuka-accent rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl mb-6 group-hover:bg-pramuka-accent group-hover:text-white transition-all duration-300 group-hover:scale-110 group-active:scale-95">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-3">Api Unggun</h3>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed">Puncak acara malam keakraban untuk menumbuhkan kreativitas seni budaya dan mempererat tali persaudaraan antar regu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Section -->
+    <section id="galeri" class="py-16 md:py-24 bg-pramuka-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-6 reveal text-center md:text-left">
+                <div class="max-w-2xl mx-auto md:mx-0">
+                    <h4 class="text-pramuka-accent font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3">Dokumentasi</h4>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">Galeri Kegiatan</h2>
+                    <p class="text-gray-300 text-base md:text-lg">Momen-momen tak terlupakan yang terekam dalam lensa selama perjalanan kami mengabdi dan belajar di alam.</p>
+                </div>
+                <button class="hidden md:inline-flex items-center gap-2 border border-gray-500 hover:bg-white hover:text-pramuka-dark hover:border-white px-6 py-3 rounded-full transition-colors font-medium">
+                    Lihat Semua <i class="fa-solid fa-arrow-right text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Image Grid (Responsive) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <!-- Foto 1 -->
+                <div class="rounded-2xl overflow-hidden h-64 md:h-72 relative group reveal">
+                    <img src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Kemah Pramuka" loading="lazy" decoding="async" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold">Perkemahan Tahunan</h3>
+                    </div>
+                </div>
+                
+                <!-- Foto 2 -->
+                <div class="rounded-2xl overflow-hidden h-64 md:h-72 relative group reveal sm:reveal-delay-1">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Tali Temali" loading="lazy" decoding="async" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold">Latihan Pionering</h3>
+                    </div>
+                </div>
+                
+                <!-- Foto 3 -->
+                <div class="rounded-2xl overflow-hidden h-64 md:h-72 relative group reveal sm:col-span-2 lg:col-span-1 lg:reveal-delay-2">
+                    <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Penjelajahan Alam" loading="lazy" decoding="async" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold">Jelajah Alam Sekitar</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center md:hidden reveal">
+                <button class="w-full sm:w-auto inline-flex justify-center items-center gap-2 border border-gray-500 hover:bg-white hover:text-pramuka-dark active:bg-gray-200 px-6 py-3.5 rounded-xl sm:rounded-full transition-colors font-medium">
+                    Lihat Semua Foto <i class="fa-solid fa-arrow-right text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pembina Section -->
+    <section id="pembina" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 reveal">
+                <h4 class="text-pramuka-accent font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3">Struktur Organisasi</h4>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-pramuka-dark mb-4 md:mb-6">Pembina Gugus Depan</h2>
+                <p class="text-gray-600 text-base md:text-lg px-2">Sosok-sosok inspiratif di balik layar yang berdedikasi membimbing dan mendampingi adik-adik penggalang SMPN 1 Belimbing.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-8">
+                <!-- Profil 1 -->
+                <div class="flex flex-col items-center text-center reveal">
+                    <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-5 md:mb-6 border-4 border-gray-100 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Kamabigus" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">Drs. H. Ahmad Fauzi</h3>
+                    <p class="text-pramuka-accent text-sm md:text-base font-medium mb-3">Ketua Mabigus (Kepsek)</p>
+                    <p class="text-gray-500 text-sm max-w-xs">Mendukung penuh seluruh aktivitas kepramukaan untuk menunjang pendidikan karakter di sekolah.</p>
+                </div>
+
+                <!-- Profil 2 -->
+                <div class="flex flex-col items-center text-center reveal sm:reveal-delay-1">
+                    <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-5 md:mb-6 border-4 border-gray-100 shadow-lg relative">
+                        <div class="absolute inset-0 bg-pramuka-accent/10"></div>
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pembina Putri" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">Kak Siti Aminah, S.Pd</h3>
+                    <p class="text-pramuka-accent text-sm md:text-base font-medium mb-3">Pembina Penggalang Putri</p>
+                    <p class="text-gray-500 text-sm max-w-xs">Berpengalaman 10 tahun dalam membina mental dan keterampilan dasar kepramukaan putri.</p>
+                </div>
+
+                <!-- Profil 3 -->
+                <div class="flex flex-col items-center text-center reveal sm:col-span-2 md:col-span-1 md:reveal-delay-2">
+                    <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-5 md:mb-6 border-4 border-gray-100 shadow-lg relative">
+                        <div class="absolute inset-0 bg-pramuka-dark/10"></div>
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Pembina Putra" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">Kak Budi Santoso, M.Pd</h3>
+                    <p class="text-pramuka-accent text-sm md:text-base font-medium mb-3">Pembina Penggalang Putra</p>
+                    <p class="text-gray-500 text-sm max-w-xs">Ahli dalam navigasi darat, survival, dan pioneering. Selalu memotivasi adik-adik untuk mandiri.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-[6px] border-pramuka-accent relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 md:gap-12 mb-12">
+                
+                <!-- About Column -->
+                <div class="sm:col-span-2 lg:col-span-5">
+                    <div class="flex items-center gap-3 mb-5 md:mb-6">
+                        <div class="w-8 h-8 md:w-10 md:h-10 bg-pramuka-accent rounded-full flex items-center justify-center text-white text-base md:text-lg">
+                            <i class="fa-solid fa-campground"></i>
+                        </div>
+                        <span class="font-bold text-white text-xl md:text-2xl tracking-wide">SPENSABEL</span>
+                    </div>
+                    <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 max-w-sm">
+                        Pangkalan Sekolah Menengah Pertama Negeri 1 Belimbing. Membina tunas bangsa menjadi generasi yang unggul, berkarakter, dan mencintai alam.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pramuka-accent hover:-translate-y-1 hover:text-white transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pramuka-accent hover:-translate-y-1 hover:text-white transition-all duration-300">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Youtube" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pramuka-accent hover:-translate-y-1 hover:text-white transition-all duration-300">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Links Column -->
+                <div class="lg:col-span-3">
+                    <h4 class="text-white font-bold text-lg mb-4 md:mb-6">Tautan Cepat</h4>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="#beranda" class="hover:text-pramuka-accent transition-colors block py-1">Beranda</a></li>
+                        <li><a href="#tentang" class="hover:text-pramuka-accent transition-colors block py-1">Sejarah & Visi Misi</a></li>
+                        <li><a href="#kegiatan" class="hover:text-pramuka-accent transition-colors block py-1">Program Latihan</a></li>
+                        <li><a href="#galeri" class="hover:text-pramuka-accent transition-colors block py-1">Galeri Foto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="sm:col-span-2 lg:col-span-4">
+                    <h4 class="text-white font-bold text-lg mb-4 md:mb-6">Hubungi Kami</h4>
+                    <ul class="space-y-4 text-sm md:text-base">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-pramuka-accent w-4 text-center"></i>
+                            <span class="text-gray-400">Jl. Pendidikan No. 1, Desa Belimbing, Kec. Belimbing, Kab. XYZ, 12345</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-pramuka-accent w-4 text-center"></i>
+                            <span class="text-gray-400">+62 812-3456-7890 (Gudep)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-pramuka-accent w-4 text-center"></i>
+                            <span class="text-gray-400 break-all">pramuka@smpn1belimbing.sch.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-gray-500 text-center md:text-left">
+                <p>&copy; 2026 Gerakan Pramuka SMPN 1 Belimbing. All rights reserved.</p>
+                <p class="font-medium text-gray-400">Salam Pramuka! ⚜️</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk UI dan Animasi -->
+    <script>
+        // 1. Mobile Menu Toggle Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                // Force reflow agar animasi CSS jalan
+                void mobileMenu.offsetWidth; 
+                mobileMenu.classList.add('opacity-100', 'translate-y-0');
+                mobileMenu.classList.remove('opacity-0', '-translate-y-4');
+                mobileBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+            } else {
+                mobileMenu.classList.add('opacity-0', '-translate-y-4');
+                mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                // Tunggu transisi selesai sebelum hidden
+                setTimeout(() => {
+                    if(!isMenuOpen) mobileMenu.classList.add('hidden');
+                }, 200); 
+                mobileBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+            }
+        }
+
+        // Set initial state for menu transition
+        mobileMenu.classList.add('opacity-0', '-translate-y-4', 'transition-all', 'duration-200');
+
+        mobileBtn.addEventListener('click', toggleMenu);
+
+        // Menutup menu mobile saat link diklik
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
+            });
+        });
+
+        // 2. Efek Transisi Navbar saat Scroll (Dioptimalkan menggunakan requestAnimationFrame)
+        const navbar = document.getElementById('navbar');
+        const navContainer = document.getElementById('nav-container');
+        const navTitle = document.getElementById('nav-title');
+        const navSubtitle = document.getElementById('nav-subtitle');
+        const navLinks = document.getElementById('nav-links');
+        let isScrolled = false;
+        
+        window.addEventListener('scroll', () => {
+            window.requestAnimationFrame(() => {
+                const currentScroll = window.scrollY;
+                if (currentScroll > 30 && !isScrolled) {
+                    // Berubah ke mode Putih
+                    isScrolled = true;
+                    navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-md', 'py-1');
+                    navbar.classList.remove('bg-transparent', 'py-4');
+                    
+                    navTitle.classList.remove('text-white');
+                    navTitle.classList.add('text-pramuka-dark');
+                    
+                    navSubtitle.classList.remove('text-gray-300');
+                    navSubtitle.classList.add('text-gray-500');
+                    
+                    navLinks.classList.remove('text-white');
+                    navLinks.classList.add('text-gray-700');
+                    
+                    mobileBtn.classList.remove('text-white');
+                    mobileBtn.classList.add('text-gray-800');
+                } else if (currentScroll <= 30 && isScrolled) {
+                    // Kembali ke Transparan
+                    isScrolled = false;
+                    navbar.classList.add('bg-transparent', 'py-4');
+                    navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-md', 'py-1');
+                    
+                    navTitle.classList.add('text-white');
+                    navTitle.classList.remove('text-pramuka-dark');
+                    
+                    navSubtitle.classList.add('text-gray-300');
+                    navSubtitle.classList.remove('text-gray-500');
+                    
+                    navLinks.classList.add('text-white');
+                    navLinks.classList.remove('text-gray-700');
+                    
+                    mobileBtn.classList.add('text-white');
+                    mobileBtn.classList.remove('text-gray-800');
+                }
+            });
+        }, { passive: true }); // passive: true untuk meningkatkan performa scroll di mobile
+
+        // 3. Animasi Scroll yang Ringan (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            // Set rootMargin agar animasi terpicu sedikittttt sebelum elemen masuk ke layar
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -50px 0px', 
+                threshold: 0.1 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Tambahkan kelas active
+                        entry.target.classList.add('active');
+                        // Unobserve agar animasi tidak diulang terus-menerus
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            reveals.forEach(reveal => {
+                observer.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
